@@ -3,8 +3,7 @@ let JSONdata
 let dataModel 
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  background('yellow')
+noCanvas()
 //firestore
 dataModel = [];
   database.collection('Crobst')

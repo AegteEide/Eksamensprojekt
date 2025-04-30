@@ -1,0 +1,42 @@
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center; /* center children horizontally */
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20vh; /* adjust as needed */
+  width: 100%;
+  background-color: lightgray;
+}
+
+.boxes {
+    display: flex;
+    flex-direction: column; /* ← ensures vertical stacking */
+    gap: 20px;
+    width: 80%;
+    flex: 1;
+    justify-content: space-evenly;
+  }
+
+.boxes > div {
+  background-color: lightblue;
+  height: calc(80vh / 4 - 20px); /* divide remaining height into 4 boxes with spacing */
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.boxes h3 {
+  text-align: center;
+  margin-top: 0;
+}
