@@ -6,11 +6,14 @@ function setup() {
 noCanvas()
 //firestore
 dataModel = [];
-  database.collection('Crobst')
+  database.collection('Crobst').doc('promisegame').collection('players')
   .onSnapshot((snapshot) => {
     dataModel.statuses = [];  // reset the array
-    snapshot.forEach((doc, index) => {
+    snapshot.forEach((doc) => {
       console.log(doc.data()) 
+      let player = doc.data()
+      console.log('#player-' + player.id + '-goal')
+      select('#player-' + player.id + '-goal').value(player.goal)
     })
   })
   //Opret forbindelse til NEXT MQTT server
