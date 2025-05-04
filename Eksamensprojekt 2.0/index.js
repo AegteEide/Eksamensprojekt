@@ -14,6 +14,22 @@ dataModel = [];
       let player = doc.data()
       console.log('#player-' + player.id + '-goal')
       select('#player-' + player.id + '-goal').value(player.goal)
+
+      let statusesArray = player.statuses
+      let statusSelect =  select('#p' + player.id + 'status1')
+      console.log(player.id)
+      console.log('p' + player.id + 'status1')
+
+      for(let i = 0; i < statusesArray.length; i++){
+        let statusText = statusesArray[0].status;
+        let elementId = 'p' + player.id + 'status' + (i + 1)
+        let element = document.getElementById(elementId);
+        if (element) {
+          element.textContent = statusesArray[i].status;  // Append to existing text
+        }else {
+          console.warn('Element not found:', elId);
+        }
+        }
     })
   })
   //Opret forbindelse til NEXT MQTT server

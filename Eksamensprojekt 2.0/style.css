@@ -28,7 +28,7 @@ html, body {
 
 
   .boxes {
-    height:90vh;
+    height:92vh;
     display: flex;
     gap: 2rem;
     padding: 2rem;
@@ -48,11 +48,31 @@ html, body {
   .table {
     display: grid;
     place-items: center;
-    height: 55.5vh;
-    width: 15vw;
+    height: 60vh;
+    width: 17vw;
     padding: 4rem;
     border: solid black;
     border-radius: 2rem;
     margin-top: 1.5rem;
   }
   
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, auto);  /* 2 rows */
+    height: 58vh;
+    width: 17vw;
+  }
+
+  .days {
+    display: grid;
+    place-items: center;
+    grid-template-rows: repeat(7,1fr);
+    gap: 6rem;
+  }
+
+  .statuses {
+    display: grid;
+    place-items: center;
+    grid-template-rows: repeat(7,1fr);
+    gap: 6rem;
+  }
