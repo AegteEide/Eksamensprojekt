@@ -25,27 +25,24 @@ dataModel = [];
         let elementId = 'p' + player.id + 'status' + (i + 1)
         let element = document.getElementById(elementId);
         if (element) {
-          element.textContent = statusesArray[i].status;  // Append to existing text
+          element.textContent = statusesArray[i].status;  
         }else {
           console.warn('Element not found:', elId);
         }
         }
     })
   })
-  //Opret forbindelse til NEXT MQTT server
+  // (MQTT Step 1)
   connection = mqtt.connect("wss://mqtt.nextservices.dk")
-  //Når serveren svarer
+  // (MQTT Step 2)
   connection.on("connect", () => {
     console.log("Er nu forbundet til Next's MQTT server")   
   })
-  
-   //vi abonnerer på et emne 
+  // (MQTT Step 3)
   connection.subscribe('Crobst')
-  //hver gang vi får en besked på emnet 
   connection.on("message", (topic, ms) => {
     console.log("Modtager data: " + ms + " - på emnet: " + topic)
-    fill(255)
-    debugStr = "Modtager data: " + ms + " - på emnet: " + topic
+  // (MQTT Step 5)
     JSONdata = JSON.parse(ms.toString())
     if(topic == 'Crobst'){
       player = JSONdata.player
