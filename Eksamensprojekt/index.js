@@ -4,30 +4,25 @@ let dataModel
 
 function setup() {
 noCanvas()
-//firestore
+
 dataModel = [];
+  // (Goal step 1)
   database.collection('Crobst').doc('promisegame').collection('players')
   .onSnapshot((snapshot) => {
-    dataModel.statuses = [];  // reset the array
+  // (Goal step 2)  
     snapshot.forEach((doc) => {
       console.log(doc.data()) 
       let player = doc.data()
-      console.log('#player-' + player.id + '-goal')
       select('#player-' + player.id + '-goal').value(player.goal)
-
+  // (Status Step 1)
       let statusesArray = player.statuses
-      let statusSelect =  select('#p' + player.id + 'status1')
-      console.log(player.id)
-      console.log('p' + player.id + 'status1')
-
       for(let i = 0; i < statusesArray.length; i++){
-        let statusText = statusesArray[0].status;
         let elementId = 'p' + player.id + 'status' + (i + 1)
         let element = document.getElementById(elementId);
         if (element) {
           element.textContent = statusesArray[i].status;  
         }else {
-          console.warn('Element not found:', elId);
+          console.warn('Element not found:', elementId);
         }
         }
     })
@@ -44,32 +39,28 @@ dataModel = [];
     console.log("Modtager data: " + ms + " - på emnet: " + topic)
   // (MQTT Step 5)
     JSONdata = JSON.parse(ms.toString())
+  // (MQTT Step 6)
     if(topic == 'Crobst'){
       player = JSONdata.player
       playerStatus = JSONdata.status
       setData(player, playerStatus)
-      if(playerStatus == 'green'){
-        background('green')
-      }
     }
   })
 }
 
-function setData(p, s){
-  let playerId = "player1"
+// (setData Step 1)
+function setData(player, status){
+  let playerId = "player" + player.id
       let statusUpdate = {
         "date": new Date(),
         "status": playerStatus,
       }
-  
-  database
-  .collection("Crobst")
-  .doc("promisegame")
-  .collection("players")
-  .doc(playerId)
+// (setData Step 2)  
+  database.collection("Crobst").doc("promisegame").collection("players").doc(playerId)
   .update({
     statuses: firebase.firestore.FieldValue.arrayUnion(statusUpdate)
   })
+// (setData Step 3)
   .then(() => {
     console.log("Status added for", playerId);
   })

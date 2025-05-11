@@ -1,4 +1,6 @@
 // Your web app's Firebase configuration
+
+// (Firebase Step 1)
   const firebaseConfig = {
     apiKey: "AIzaSyCyf_g1e6g4nFYk6IMa6umJ7r7f9YdNjHs",
     authDomain: "ddu-eksamenspro.firebaseapp.com",
@@ -10,5 +12,7 @@
   };
   
 // Initialize Firebase
+// (Firebase Step 2)
 const app = firebase.initializeApp(firebaseConfig);
+// (Firebase Step 3)
 const database = firebase.firestore()
