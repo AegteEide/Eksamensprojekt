@@ -48,6 +48,7 @@ dataModel = [];
             });
         }
       });
+      
   // (Status Step 1)
       let statusesArray = player.statuses
       for(let i = 0; i < statusesArray.length; i++){
