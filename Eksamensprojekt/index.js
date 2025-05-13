@@ -12,7 +12,7 @@ select('#header-fullscreen').mousePressed( ()=>{
 
 
 
-  
+
 dataModel = [];
   // (Goal step 1)
   database.collection('Crobst').doc('promisegame').collection('players')
@@ -33,7 +33,7 @@ dataModel = [];
       }
 
       goalInput.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' && goalInput.value.trim() !== '') {
+        if (e.key === 'ArrowRight' && goalInput.value.trim() !== '') {
           let goalValue = goalInput.value.trim();
           let playerId = 'player' + player.id;
 
