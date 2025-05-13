@@ -10,9 +10,6 @@ select('#header-fullscreen').mousePressed( ()=>{
     fullscreen(!fs)
   })
 
-
-
-
 dataModel = [];
   // (Goal step 1)
   database.collection('Crobst').doc('promisegame').collection('players')
@@ -103,6 +100,7 @@ dataModel = [];
 
     })
   })
+  
   // (MQTT Step 1)
   connection = mqtt.connect("wss://mqtt.nextservices.dk")
   // (MQTT Step 2)
