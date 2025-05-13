@@ -10,6 +10,9 @@ select('#header-fullscreen').mousePressed( ()=>{
     fullscreen(!fs)
   })
 
+
+
+  
 dataModel = [];
   // (Goal step 1)
   database.collection('Crobst').doc('promisegame').collection('players')
