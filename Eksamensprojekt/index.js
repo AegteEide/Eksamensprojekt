@@ -33,7 +33,7 @@ dataModel = [];
       }
 
       goalInput.addEventListener('keydown', function (e) {
-        if (e.key === 'ArrowRight' && goalInput.value.trim() !== '') {
+        if (e.key === 'Delete' && goalInput.value.trim() !== '') {
           let goalValue = goalInput.value.trim();
           let playerId = 'player' + player.id;
 
@@ -48,7 +48,7 @@ dataModel = [];
             });
         }
       });
-      
+
   // (Status Step 1)
       let statusesArray = player.statuses
       for(let i = 0; i < statusesArray.length; i++){
