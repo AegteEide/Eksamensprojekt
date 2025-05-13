@@ -2,10 +2,12 @@ let connection
 let JSONdata 
 let dataModel 
 let plingSound
+let negativeSound
 
 
 function preload(){
   plingSound = loadSound('assets/pling.wav')
+  negativeSound = loadSound('assets/negative.wav')
 }
 
 function setup() {
@@ -135,9 +137,13 @@ function setData(player, status){
     "date": new Date(),
     "status": playerStatus,
   }
-  
+
   if(playerStatus === 'green'){
     plingSound.play()
+  }
+
+  if(playerStatus === 'red'){
+    negativeSound.play()
   }
   
 // (setData Step 2)  
