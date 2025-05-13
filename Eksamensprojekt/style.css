@@ -120,6 +120,7 @@ main {
   display: grid;
   place-items: center;
   background-color: rgb(28, 158, 28);
+  border: 2px solid black;
   border-radius: 1em;
   width: 5vw;
   height: 5vw;
@@ -133,6 +134,7 @@ main {
   display: grid;
   place-items: center;
   background-color: rgb(255, 154, 23);
+  border: 2px solid black;
   border-radius: 1em;
   width: 5vw;
   height: 5vw;
@@ -146,6 +148,7 @@ main {
   display: grid;
   place-items: center;
   background-color: rgb(250, 25, 25);
+  border: 2px solid black;
   border-radius: 1em;
   width: 5vw;
   height: 5vw;

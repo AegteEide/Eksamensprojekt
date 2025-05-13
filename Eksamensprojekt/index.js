@@ -30,7 +30,7 @@ dataModel = [];
       }
 
       goalInput.addEventListener('keydown', function (e) {
-        if (e.key === 'Delete' && goalInput.value.trim() !== '') {
+        if (e.key === 'Delete' || e.key === 'Enter' && goalInput.value.trim() !== '') {
           let goalValue = goalInput.value.trim();
           let playerId = 'player' + player.id;
 
@@ -100,7 +100,7 @@ dataModel = [];
 
     })
   })
-  
+
   // (MQTT Step 1)
   connection = mqtt.connect("wss://mqtt.nextservices.dk")
   // (MQTT Step 2)
