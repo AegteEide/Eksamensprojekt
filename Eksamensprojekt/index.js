@@ -5,6 +5,11 @@ let dataModel
 function setup() {
 noCanvas()
 
+select('#header-fullscreen').mousePressed( ()=>{
+    let fs = fullscreen()
+    fullscreen(!fs)
+  })
+
 dataModel = [];
   // (Goal step 1)
   database.collection('Crobst').doc('promisegame').collection('players')
