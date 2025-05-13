@@ -1,6 +1,12 @@
 let connection 
 let JSONdata 
 let dataModel 
+let plingSound
+
+
+function preload(){
+  plingSound = loadSound('assets/pling.wav')
+}
 
 function setup() {
 noCanvas()
@@ -124,11 +130,16 @@ dataModel = [];
 
 // (setData Step 1)
 function setData(player, status){
-  let playerId = "player" + player.id
-      let statusUpdate = {
-        "date": new Date(),
-        "status": playerStatus,
-      }
+  let playerId = "player1" 
+  let statusUpdate = {
+    "date": new Date(),
+    "status": playerStatus,
+  }
+  
+  if(playerStatus === 'green'){
+    plingSound.play()
+  }
+  
 // (setData Step 2)  
   database.collection("Crobst").doc("promisegame").collection("players").doc(playerId)
   .update({

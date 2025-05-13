@@ -14,7 +14,7 @@ main {
 
 @font-face {
   font-family: 'ErasBoldITC';
-  src: url('./fonts/eras-itc-bold.ttf') format('truetype');
+  src: url('./assets/eras-itc-bold.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -133,7 +133,7 @@ main {
 .orange {
   display: grid;
   place-items: center;
-  background-color: rgb(255, 154, 23);
+  background-color: yellow;
   border: 2px solid black;
   border-radius: 1em;
   width: 5vw;
@@ -148,7 +148,7 @@ main {
   display: grid;
   place-items: center;
   background-color: rgb(250, 25, 25);
-  border: 2px solid black;
+  border:  2px solid black;
   border-radius: 1em;
   width: 5vw;
   height: 5vw;
