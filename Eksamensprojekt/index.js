@@ -5,6 +5,7 @@ let plingSound
 let negativeSound
 
 
+// (Sound Step 1)
 function preload(){
   plingSound = loadSound('assets/pling.wav')
   negativeSound = loadSound('assets/negative.wav')
@@ -26,9 +27,10 @@ dataModel = [];
     snapshot.forEach((doc) => {
       console.log(doc.data()) 
       let player = doc.data()
-      //select('#player-' + player.id + '-goal').value(player.goal)
 
+    // (Goalinput Step 1)
      let goalInput = document.getElementById('player-' + player.id + '-goal');
+    // (Goalinput Step 2)
       if (goalInput) {
         if (player.goal && player.goal.trim() !== '') {
           goalInput.value = player.goal;
@@ -36,13 +38,13 @@ dataModel = [];
           goalInput.placeholder = "Enter your goal...";
         }
       }
-
+    // (Goalinput Step 3)
       goalInput.addEventListener('keydown', function (e) {
         if (e.key === 'Delete' || e.key === 'Enter' && goalInput.value.trim() !== '') {
           let goalValue = goalInput.value.trim();
           let playerId = 'player' + player.id;
 
-          // Update goal in Firebase
+    // (Goalinput Step 4)
           database.collection("Crobst").doc("promisegame").collection("players").doc(playerId)
             .update({ goal: goalValue })
             .then(() => {
@@ -61,31 +63,27 @@ dataModel = [];
         let elementId = 'p' + player.id + 'status' + (i + 1)
         let el = document.getElementById(elementId);
         if (el) {
-          //console.log('adding class', statusesArray[i].status)
-          //console.log("Looking for element ID:", elementId);
           el.classList.add(statusesArray[i].status);  
         }else {
           console.warn('Element not found:', elementId);
         }
         }
         
-       // (Reminder Logic)
+       // (Reminder Step 1)
         let lastThreeStatuses = statusesArray.slice(-3);
         let allRed = lastThreeStatuses.length === 3 && lastThreeStatuses.every(s => s.status === 'red');
         let allGreen = lastThreeStatuses.length === 3 && lastThreeStatuses.every(s => s.status === 'green')
 
-        // Get the existing reminder div by player ID
+        // (Reminder Step 2)
         let reminderDiv = document.getElementById('reminder-' + player.id);
-
-        // If the div exists, update it based on the status check
-                if (reminderDiv) {
-          // Clear existing content
+        // (Reminder Step 3)
+          if (reminderDiv) {
           reminderDiv.innerHTML = '';
 
-          // RED reminder
+          // (Reminder Step 4)
           if (allRed) {
             let redReminder = document.createElement('div');
-            redReminder.textContent = ' ⚠ Reminder: 3 red days in a row! ';
+            redReminder.textContent = ' ⚠️ Reminder: 3 red days in a row! ';
             redReminder.style.backgroundColor = '#ffe5e5';
             redReminder.style.border = '1px solid #a00';
             redReminder.style.borderRadius = '0.5rem';
@@ -94,10 +92,10 @@ dataModel = [];
             reminderDiv.appendChild(redReminder);
           }
 
-          // GREEN reminder
+          // (Reminder Step 5)
           if (allGreen) {
             let greenReminder = document.createElement('div');
-            greenReminder.textContent = ' Keep up the good work!💪 ';
+            greenReminder.textContent = ' Nice work!💪 ';
             greenReminder.style.backgroundColor = '#e0f8e0';
             greenReminder.style.border = '1px solid green';
             greenReminder.style.borderRadius = '0.5rem';
@@ -115,13 +113,13 @@ dataModel = [];
   connection.on("connect", () => {
     console.log("Er nu forbundet til Next's MQTT server")   
   })
-  // (MQTT Step 3)
+  // (MQTT Step 3)  
   connection.subscribe('Crobst')
   connection.on("message", (topic, ms) => {
     console.log("Modtager data: " + ms + " - på emnet: " + topic)
-  // (MQTT Step 5)
+  // (MQTT Step 4)
     JSONdata = JSON.parse(ms.toString())
-  // (MQTT Step 6)
+  // (MQTT Step 5)
     if(topic == 'Crobst'){
       player = JSONdata.player
       playerStatus = JSONdata.status
@@ -137,7 +135,8 @@ function setData(player, status){
     "date": new Date(),
     "status": playerStatus,
   }
-
+ 
+  // (Sound Step 2)
   if(playerStatus === 'green'){
     plingSound.play()
   }

@@ -29,7 +29,7 @@ main {
 
 .header > h1 {
   margin-top: 1.5rem;
-  color: white;
+  color: rgb(219, 159, 110);
 }
 
 .reminder {
@@ -81,6 +81,12 @@ main {
   border: solid rgb(166, 91, 75);
   min-width: 15em;
   box-sizing: border-box;
+}
+
+.input {
+  height: 2em;
+  width: 15em;
+  font-size: 1.25em;
 }
 
 .table {
