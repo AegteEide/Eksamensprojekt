@@ -13,9 +13,9 @@ dataModel = [];
     snapshot.forEach((doc) => {
       console.log(doc.data()) 
       let player = doc.data()
-      //select('#player-' + player.id + '-goal').value(player.goal)
+      
 
-     let goalInput = document.getElementById('player-' + player.id + '-goal');
+     let goalInput = select('#player-' + player.id + '-goal')
       if (goalInput) {
         if (player.goal && player.goal.trim() !== '') {
           goalInput.value = player.goal;

@@ -25,7 +25,7 @@ dataModel = [];
   .onSnapshot((snapshot) => {
   // (Goal step 2)  
     snapshot.forEach((doc) => {
-      console.log(doc.data()) 
+      //console.log(doc.data()) 
       let player = doc.data()
 
     // (Goalinput Step 1)
@@ -59,7 +59,6 @@ dataModel = [];
   // (Status Step 1)
       let statusesArray = player.statuses
       for(let i = 0; i < statusesArray.length; i++){
-        
         let elementId = 'p' + player.id + 'status' + (i + 1)
         let el = document.getElementById(elementId);
         if (el) {
@@ -116,21 +115,24 @@ dataModel = [];
   // (MQTT Step 3)  
   connection.subscribe('Crobst')
   connection.on("message", (topic, ms) => {
-    console.log("Modtager data: " + ms + " - på emnet: " + topic)
+  //  console.log("Modtager data: " + ms + " - på emnet: " + topic)
   // (MQTT Step 4)
     JSONdata = JSON.parse(ms.toString())
   // (MQTT Step 5)
     if(topic == 'Crobst'){
-      player = JSONdata.player
-      playerStatus = JSONdata.status
-      setData(player, playerStatus)
+      let playerIdentification = JSONdata.player
+      console.log(playerIdentification)
+      let playerStatus = JSONdata.status
+      console.log('MQTT message for player:', playerIdentification, 'status:', playerStatus);
+      setData(playerIdentification, playerStatus)
     }
   })
 }
 
 // (setData Step 1)
-function setData(player, status){
-  let playerId = "player1" 
+function setData(playerIdentification, playerStatus){
+  let docId = "player" + playerIdentification
+  console.log('Updating Firestore doc:', docId, 'with status:', playerStatus);
   let statusUpdate = {
     "date": new Date(),
     "status": playerStatus,
@@ -146,13 +148,13 @@ function setData(player, status){
   }
   
 // (setData Step 2)  
-  database.collection("Crobst").doc("promisegame").collection("players").doc(playerId)
+  database.collection("Crobst").doc("promisegame").collection("players").doc(docId)
   .update({
     statuses: firebase.firestore.FieldValue.arrayUnion(statusUpdate)
   })
 // (setData Step 3)
   .then(() => {
-    console.log("Status added for", playerId);
+    console.log("Status added for", docId);
   })
   .catch((error) => {
     console.error("Error updating status:", error);
